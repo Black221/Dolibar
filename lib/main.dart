@@ -13,8 +13,6 @@ void main() {
 }
 
 Future<String> sayHello () async {
-
-
   // Await the http get response, then decode the json-formatted response.
   var response = await http.get(Uri.parse('http://localhost:8080/dolibarr/api/index.php/users?DOLAPIKEY=lhackerskey'));
   if (response.statusCode == 200) {
@@ -59,9 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      body: Center(
-        child: bodyList[selectedIndex],
-      ),
+      body:  LoginScreen(),
       bottomNavigationBar: SalomonBottomBar(
           currentIndex: selectedIndex,
           selectedItemColor: const Color(0xff1eafe9),
