@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_dolibarr/screens/home.dart';
 import 'package:mobile_dolibarr/screens/login.dart';
+import 'package:mobile_dolibarr/screens/provider.dart';
 import 'package:mobile_dolibarr/widgets/bottomTab.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
@@ -58,7 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(title: _navBarItems[selectedIndex].title),
       body: Center(
         child: bodyList[selectedIndex],
       ),
@@ -102,6 +102,6 @@ final _navBarItems = [
 final bodyList = [
   const HomeScreen('home'),
   const HomeScreen('agenda'),
-  const HomeScreen('provider'),
+  const ProviderScreen('provider'),
   const HomeScreen('product'),
 ];
