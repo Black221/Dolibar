@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mobile_dolibarr">
-   <application
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application
         android:label="mobile_dolibarr"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
