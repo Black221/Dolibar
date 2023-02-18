@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:mobile_dolibarr/screens/Product_list.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'  as http;
@@ -33,6 +34,8 @@ bool isedit = false;
       
     }
   }
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,17 +49,30 @@ bool isedit = false;
         children: [
           TextField(
             controller: labelController,
-            decoration: InputDecoration(hintText: 'Titre')),
+            decoration: InputDecoration(
+                labelText: 'label',
+                hintText: 'Entrer le nom du label',
+                prefixIcon: Icon(Icons.bookmark),
+                border: OutlineInputBorder(),)),
           SizedBox(height:20),
           TextField(
             controller: refController,
-            decoration: InputDecoration(hintText: 'ref')),
+            decoration: InputDecoration(
+
+                labelText: 'Reference',
+                hintText: 'Entrer le nom du Reference',
+                prefixIcon: Icon(Icons.alternate_email),
+                border: OutlineInputBorder(),)),
           SizedBox(height:20),
           TextField(
             controller: descriptionController,
-            decoration: InputDecoration(hintText: 'Description'),
-            minLines: 4,
-            maxLines: 4,
+            decoration: InputDecoration(
+              labelText: 'Description',
+                  hintText: 'Entrer la description',
+                  prefixIcon: Icon(Icons.description),
+                  border: OutlineInputBorder(),
+                  ),
+            
             ),
             SizedBox(height:20),
             ElevatedButton(
@@ -67,12 +83,16 @@ bool isedit = false;
                     isedit?'Update':'Submit'
                     ),
                 )
-            )
+            ),
+            
         ],
       )
       
     );
   }
+
+  Widget _gap() => const SizedBox(height: 16);
+
 
   Future<void> updatedata()async{
     final product = widget.product;
@@ -93,7 +113,8 @@ bool isedit = false;
         refController.text = "",
         labelController.text = "",
         descriptionController.text = "",
-        showSuccesMessage('Création faite') ,
+        showSuccesMessage('Création faite'),
+        Product_list()
       }).catchError((onError) => {
         print(onError),
       showFailedMessage('Création faite') 
@@ -119,10 +140,10 @@ bool isedit = false;
         refController.text = "",
         labelController.text = "",
         descriptionController.text = "",
-        showSuccesMessage('Création faite') ,
+        showSuccesMessage('Création réussi') ,
       }).catchError((onError) => {
         print(onError),
-      showFailedMessage('Création faite') 
+      showFailedMessage('Création failed') 
       });
        /*if (response.statusCode == 200) {
       //Reset des valeurs du formulaire initialisation avec les chaines vides: 

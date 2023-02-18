@@ -38,25 +38,25 @@ class _Product_listState extends State<Product_list> {
           onPressed: navigateToAddProcuct,
           // label:Text('Add Product') //faire une icon
               )
-          ],
-          bottom: PreferredSize(
-            preferredSize: Size.fromHeight(40.0),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: "Rechercher....",
-                  hintStyle: TextStyle(color: Colors.white),
-                  fillColor: Color.fromARGB(255, 163, 228, 239),
-                  border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-                  prefixIcon: Icon(Icons.search, color: Colors.white),
-                ),
-              ),
-            ),
-          ),
-          ),
+          ]),
+          // bottom: PreferredSize(
+          //   preferredSize: Size.fromHeight(40.0),
+          //   child: Padding(
+          //     padding: EdgeInsets.symmetric(horizontal: 10),
+          //     child: TextField(
+          //       decoration: InputDecoration(
+          //         hintText: "Rechercher....",
+          //         hintStyle: TextStyle(color: Colors.white),
+          //         fillColor: Color.fromARGB(255, 163, 228, 239),
+          //         border: OutlineInputBorder(
+          //     borderRadius: BorderRadius.circular(10),
+          //   ),
+          //         prefixIcon: Icon(Icons.search, color: Colors.white),
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          // ),
         body:FutureBuilder(
           future: data,
           builder:(context, snapshot) {
@@ -132,7 +132,7 @@ class _Product_listState extends State<Product_list> {
             
             }
           },
-        ),
+        )
     );
   }
 
@@ -170,23 +170,6 @@ class _Product_listState extends State<Product_list> {
   //   }
   // }
   //Getting data from the server
-  Future fetchProduct() async {
-    final url = "http://localhost/dolibarr/api/index.php/products";
-    final uri = Uri.parse(url);
-    final response = await http.get(uri,
-      headers:{'Content-Type': 'application/json', 'DOLAPIKEY': '1xsrnA7XOLmS6w72348TZO2UyoonkVT4'},//Sometimes required
-    ); // pas besoin de body car juste affichege
-  
-      //print(response.statusCode);
-      //print(response.body);
-    if (response.statusCode == 200) {
-        return jsonDecode(response.body) ;
-        
-    }  
-      // setState(() { Comment actualiser directement les données
-      //   isloading = true ;
-      // }); 
-  }
 
   
   void showFailedMessage(String message){
@@ -196,5 +179,29 @@ class _Product_listState extends State<Product_list> {
                   );
     ScaffoldMessenger.of(context).showSnackBar(alert);
   }
-}
 
+  Future fetchProduct() async {
+      
+    final url = "http://localhost/dolibarr/api/index.php/products";
+    final uri = Uri.parse(url);
+    final response = await http.get(uri,
+      headers:{'Content-Type': 'application/json', 'DOLAPIKEY': '1xsrnA7XOLmS6w72348TZO2UyoonkVT4'},//Sometimes required
+    ); // pas besoin de body car juste affichege
+  
+      //print(response.statusCode);
+      //print(response.body);
+    if (response.statusCode == 200) {
+      setState(() { //Comment actualiser directement les données
+        // isloading = true ;
+      }); 
+        return jsonDecode(response.body) ;
+        
+    }  
+  }
+Future<void> _reloadData() async {
+    setState(() {
+      fetchProduct();// This will rebuild the widget and trigger a reload of the data
+    });
+  }
+
+}
