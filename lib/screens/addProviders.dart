@@ -25,6 +25,15 @@ class _AddProviderState extends State<AddProviderScreen> {
     final bool isSmallScreen = MediaQuery.of(context).size.width < 600;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255,38, 60, 92),
+        title:  Row(
+          children: [
+            Image.asset("images/doligo.png",height: 40,),
+            const Text('Fournisseurs', selectionColor: Colors.white,),
+          ],
+        ),
+      ),
         body: Center(
             child: isSmallScreen
                 ? Column(
@@ -120,93 +129,93 @@ class  __FormContentState extends State<_FormContent> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(maxWidth: 300),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          constraints: const BoxConstraints(maxWidth: 300),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
 
-            _gap(),
-            Container(  //show image here after choosing image
-                child:uploadImage == null ?
-                const Text("Hey"): //if uploadimage is null then show empty container
-                SizedBox(
-                    height:150,
-                    width: 150,
-                    child:Image.file(uploadImage! as File) //load image from file
-                )
-            ),
-            _gap(),
-            TextButton.icon(
-              onPressed: (){
-                chooseImage(); // call choose image function
-              },
-              icon:const Icon(Icons.folder_open),
-              label: const Text("Ajouter logo"),
-
-            ),
-            _gap(),
-            TextFormField(
-              validator: (value) {
-
-              },
-              controller: name,
-              decoration: const InputDecoration(
-
-                labelText: 'Fournisseur',
-                hintText: 'Entrer le nom du fournisseur',
-                prefixIcon: Icon(Icons.people_rounded),
-                border: OutlineInputBorder(),
-              ),
-            ),
-            _gap(),
-            TextFormField(
-              validator: (value) {
-
-              },
-              controller: description,
-              decoration: const InputDecoration(
-                  labelText: 'Description',
-                  hintText: 'Entrer la description',
-                  prefixIcon: Icon(Icons.description),
-                  border: OutlineInputBorder(),
-              ),
-            ),
-            _gap(),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4)),
+                _gap(),
+                Container(  //show image here after choosing image
+                    child:uploadImage == null ?
+                    const Text("Hey"): //if uploadimage is null then show empty container
+                    SizedBox(
+                        height:150,
+                        width: 150,
+                        child:Image.file(uploadImage! as File) //load image from file
+                    )
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Text(
-                    'Ajouter',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                _gap(),
+                TextButton.icon(
+                  onPressed: (){
+                    chooseImage(); // call choose image function
+                  },
+                  icon:const Icon(Icons.folder_open),
+                  label: const Text("Ajouter logo"),
+
+                ),
+                _gap(),
+                TextFormField(
+                  validator: (value) {
+
+                  },
+                  controller: name,
+                  decoration: const InputDecoration(
+
+                    labelText: 'Fournisseur',
+                    hintText: 'Entrer le nom du fournisseur',
+                    prefixIcon: Icon(Icons.people_rounded),
+                    border: OutlineInputBorder(),
                   ),
                 ),
-                onPressed: () {
-                  if (_formKey.currentState?.validate() ?? false) {
-                    /// do something
-                    print(name.text);
-                    print(description.text);
-                    addProvider(name.text, description.text).then((value) {
-                      print("done");
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const ProviderScreen()));
-                    }).catchError((onError) {
-                      print("sorry");
-                    });
-                  }
-                },
-              ),
+                _gap(),
+                TextFormField(
+                  validator: (value) {
+
+                  },
+                  controller: description,
+                  decoration: const InputDecoration(
+                    labelText: 'Description',
+                    hintText: 'Entrer la description',
+                    prefixIcon: Icon(Icons.description),
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                _gap(),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4)),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Text(
+                        'Ajouter',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    onPressed: () {
+                      if (_formKey.currentState?.validate() ?? false) {
+                        /// do something
+                        print(name.text);
+                        print(description.text);
+                        addProvider(name.text, description.text).then((value) {
+                          print("done");
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const ProviderScreen()));
+                        }).catchError((onError) {
+                          print("sorry");
+                        });
+                      }
+                    },
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          )
     );
   }
 

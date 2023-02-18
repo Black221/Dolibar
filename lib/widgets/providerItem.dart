@@ -58,22 +58,7 @@ class _ProviderItemState extends State<ProviderItem> {
                                      Text("test · test",
                                          style: Theme.of(context).textTheme.bodySmall),
                                      const SizedBox(height: 8),
-                                     Row(
-                                       mainAxisSize: MainAxisSize.min,
-                                       children: [
-                                         Icons.bookmark_border_rounded,
-                                         Icons.share,
-                                         Icons.more_vert
-                                       ].map((e) {
-                                         return InkWell(
-                                           onTap: () {},
-                                           child: Padding(
-                                             padding: const EdgeInsets.only(right: 8.0),
-                                             child: Icon(e, size: 16),
-                                           ),
-                                         );
-                                       }).toList(),
-                                     )
+
                                    ],
                                  )),
                              Container(

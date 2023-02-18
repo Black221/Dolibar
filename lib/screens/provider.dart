@@ -20,38 +20,17 @@ class _ProviderScreenState extends State<ProviderScreen> {
     @override
     Widget build(BuildContext context) {
         return Scaffold(
-
-            body: NestedScrollView(
-                headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-                  return <Widget>[
-                      SliverAppBar(
-                          expandedHeight: 300.0,
-                          floating: false,
-                          pinned: true,
-                          stretch: true,
-                          flexibleSpace: FlexibleSpaceBar(
-                              centerTitle: true,
-                              collapseMode: CollapseMode.parallax,
-                              title: const Text("Provider List",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16.0,
-                                  )),
-                              background: Image.network(
-                                "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-                                fit: BoxFit.cover,
-                              )
-                          ),
-                      ),
-                    ];
-                },
-                body: const ProviderItem(),
-
+            appBar: AppBar(
+              backgroundColor: const Color.fromARGB(255,38, 60, 92),
+              leading: Image.asset("images/doligo.png"),
+              title: const Text('Fournisseurs', selectionColor: Colors.white,),
             ),
+            body: const ProviderItem(),
             floatingActionButton: FloatingActionButton(
-                child:const Icon( Icons.add),
+              backgroundColor: const Color.fromARGB(255,38, 60, 92),
+                child:const Icon( Icons.add, ),
                 onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) =>  AddProviderScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>  const AddProviderScreen()));
                 },
             ),
         );

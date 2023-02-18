@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'calendar.dart';
 import 'provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'home.dart';
@@ -37,28 +38,28 @@ final _navBarItems = [
     SalomonBottomBarItem(
         icon: const Icon(Icons.home),
         title: const Text("Home"),
-        selectedColor: Colors.blue,
+        selectedColor: Color.fromARGB(255,38, 60, 92),
     ),
     SalomonBottomBarItem(
         icon: const Icon(Icons.calendar_month),
         title: const Text("Agenda"),
-        selectedColor: Colors.blue,
+        selectedColor: Color.fromARGB(255,38, 60, 92),
     ),
     SalomonBottomBarItem(
         icon: const Icon(Icons.people_rounded),
         title: const Text("Provider"),
-        selectedColor: Colors.blue,
+        selectedColor: Color.fromARGB(255,38, 60, 92),
     ),
     SalomonBottomBarItem(
         icon: const Icon(Icons.shopping_cart),
         title: const Text("Product"),
-        selectedColor: Colors.blue,
+        selectedColor: Color.fromARGB(255,38, 60, 92),
     ),
 ];
 
 final bodyList = [
-    const HomeScreen('home'),
-    const HomeScreen('agenda'),
+    HomeScreen('home'),
+    const CalendarScreen(),
     const ProviderScreen(),
-    const HomeScreen('product'),
+    HomeScreen('product'),
 ];
